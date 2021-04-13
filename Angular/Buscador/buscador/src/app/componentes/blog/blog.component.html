@@ -1,0 +1,61 @@
+<div>
+  <hr>
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Id</label>
+        <div class="col-8">
+          <input class="form-control"
+                 type="number"
+                 placeholder="Id"
+                 formControlName="_id">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+          <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.get('nombre').valid && isClicked}"
+                 type="text"
+                 placeholder="Nombre"
+                 formControlName="nombre">
+          <div *ngIf="formulario.controls['nombre'].errors?.required && isClicked"
+               class="forms-control-feedback">
+            Por favor indique el nombre
+          </div>
+          <div *ngIf="formulario.controls['nombre'].errors?.minlength && isClicked"
+               class="forms-control-feedback">
+            El nombre debe contener por lo menos 5 caracteres.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Entrada</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               type="textarea"
+               formControlName="entrada">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">&nbsp;</label>
+      <div class="input-group col-md-8">
+        <button type="submit" (click)="isClicked = true" class="btn btn-outline-primary">
+          Publicar
+        </button>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <h3>Entradas</h3>
+  <div *ngFor="let input of blogsAsincorno | async; let i = index">
+      <p>{{ input.nombre }}</p>
+      <p>{{input.fecha | date: 'medium'}}</p>
+      <p>{{ input.entrada }}</p>
+    <hr>
+  </div>
+</div>

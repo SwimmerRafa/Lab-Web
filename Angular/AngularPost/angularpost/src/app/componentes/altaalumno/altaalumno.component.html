@@ -1,0 +1,71 @@
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Campus</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Campus"
+               formControlName="campus">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Nombre"
+               formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Matricula</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Matricula"
+               formControlName="matricula">
+      </div>
+    </div>
+    <!--“materias” esta haciendo referencia a “get materias(): FormArray { … }” que implementamos en el ts.
+   -->
+    <div formArrayName="materias">
+      <!-- Se requiere utilizar [formGroupName]="i" porque los elementos que contiene
+      el arreglo son FromGroup. Con esto se está utilizando la referencia al FormGroup, que esta en el
+     indice ‘i’ del FormArray-->
+      <div *ngFor="let materia of materias.controls; index as i" [formGroupName]="i">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Materia {{i + 1}}</label>
+          <div class="col-8">
+            Clave: <input class="form-control"
+                          type="text"
+                          placeholder="Clave"
+                          formControlName="_id">
+            Nombre: <input class="form-control"
+                           type="text"
+                           placeholder="Nombre"
+                           formControlName="nombre">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Foto</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="URL"
+               formControlName="foto">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+<hr>

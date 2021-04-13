@@ -1,0 +1,97 @@
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Id</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="number"
+               placeholder="Id"
+               formControlName="_id">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Nombre"
+               formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Imagen</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Imagen"
+               formControlName="imagen">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Developer</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Developer"
+               formControlName="developer">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Lanzamiento</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="date"
+               placeholder="Fecha de Lanzamiento"
+               formControlName="lanzamiento">
+      </div>
+    </div>
+    <!--“materias” esta haciendo referencia a “get materias(): FormArray { … }” que implementamos en el ts.
+   -->
+    <div formArrayName="carousel">
+      <!-- Se requiere utilizar [formGroupName]="i" porque los elementos que contiene
+      el arreglo son FromGroup. Con esto se está utilizando la referencia al FormGroup, que esta en el
+     indice ‘i’ del FormArray-->
+      <div *ngFor="let imagenes of carousel.controls; index as i" [formGroupName]="i">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Imagen {{i + 1}}</label>
+          <div class="col-8">
+            Img: <input class="form-control"
+                          type="text"
+                          placeholder="Link img"
+                          formControlName="img">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="ligas">
+      <!-- Se requiere utilizar [formGroupName]="i" porque los elementos que contiene
+      el arreglo son FromGroup. Con esto se está utilizando la referencia al FormGroup, que esta en el
+     indice ‘i’ del FormArray-->
+      <div *ngFor="let ligasWeb of webDatails.controls; index as i" [formGroupName]="i">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Web Link {{i + 1}}</label>
+          <div class="col-8">
+            Link: <input class="form-control"
+                          type="text"
+                          placeholder="Link Web"
+                          formControlName="link">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+<hr>
+

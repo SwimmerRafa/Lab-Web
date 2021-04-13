@@ -1,0 +1,69 @@
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Id</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Id"
+               formControlName="_id">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Nombre"
+               formControlName="nombre">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Imagen</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="URL"
+               formControlName="imagen">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Ficha tecnica</label>
+      <div class="col-8">
+        <input class="form-control"
+               type="text"
+               placeholder="Ficha Tecnica"
+               formControlName="fichatecnica">
+      </div>
+    </div>
+    <!--“materias” esta haciendo referencia a “get materias(): FormArray { … }” que implementamos en el ts.
+   -->
+    <div formArrayName="juegos">
+      <!-- Se requiere utilizar [formGroupName]="i" porque los elementos que contiene
+      el arreglo son FromGroup. Con esto se está utilizando la referencia al FormGroup, que esta en el
+     indice ‘i’ del FormArray-->
+      <div *ngFor="let juegos of juegos.controls; index as i" [formGroupName]="i">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Juego {{i + 1}}</label>
+          <div class="col-8">
+            Juego: <input class="form-control"
+                          type="number"
+                          placeholder="idJ"
+                          formControlName="idJ">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+<hr>

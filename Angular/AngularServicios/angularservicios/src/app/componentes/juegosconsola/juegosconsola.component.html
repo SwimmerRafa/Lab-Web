@@ -1,0 +1,12 @@
+<h1>{{ juegos.juegos.Nombre }}</h1>
+<hr>
+<div class="row">
+  <div class="card" style="width: 18rem;" *ngFor="let juego of juegos.juegos; let i = index">
+    <img class="card-img-top" [src]="[juego.imagenJuego]" [alt]="[juego.Nombre]">
+    <div class="card-body">
+      <h5 class="card-title">{{ juego.Nombre }}</h5>
+
+      <a [routerLink]="['juego', i]" class="btn btn-primary">Ficha Técnica</a>
+    </div>
+  </div>
+</div>

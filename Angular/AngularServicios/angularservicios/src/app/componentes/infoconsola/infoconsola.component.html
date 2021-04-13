@@ -1,0 +1,8 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{ consola.nombre }}</h1>
+    <p class="lead">{{ consola.descripcion }}</p>
+
+  </div>
+  <a [routerLink]="['/juegosconsola', consola.id]" class="btn btn-primary">Juegos</a>
+</div>
